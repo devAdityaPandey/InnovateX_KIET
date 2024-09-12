@@ -25,3 +25,6 @@ By facilitating peer-to-peer guidance and driving real-world experiences, Innova
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/devAdityaPandey/InnovateX_KIET.git
+
+   Contact
+For any questions or feedback, please reach out to aditya.pandey.connect@gmail.com.
