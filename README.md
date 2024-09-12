@@ -31,7 +31,7 @@ By facilitating peer-to-peer guidance and driving real-world experiences, Innova
    cd InnovateX_KIET
 
 3. **Set Up the Environment:**
-- Follow the setup instructions provided in the project documentation.
+   - Follow the setup instructions provided in the project documentation.
 
 ## Contributing
 We welcome contributions to InnovateX_KIET! If you have suggestions, improvements, or bug fixes, please submit a pull request or open an issue.
