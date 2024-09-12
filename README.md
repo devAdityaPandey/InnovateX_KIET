@@ -24,4 +24,4 @@ By facilitating peer-to-peer guidance and driving real-world experiences, Innova
 ## Getting Started
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/username/InnovateX_KIET.git
+   git clone https://github.com/devAdityaPandey/InnovateX_KIET.git
