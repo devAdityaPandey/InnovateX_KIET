@@ -26,5 +26,15 @@ By facilitating peer-to-peer guidance and driving real-world experiences, Innova
    ```bash
    git clone https://github.com/devAdityaPandey/InnovateX_KIET.git
 
-##Contact
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd InnovateX_KIET
+
+3. **Set Up the Environment:**
+- Follow the setup instructions provided in the project documentation.
+
+## Contributing
+We welcome contributions to InnovateX_KIET! If you have suggestions, improvements, or bug fixes, please submit a pull request or open an issue.
+
+## Contact
 For any questions or feedback, please reach out to aditya.pandey.connect@gmail.com.
