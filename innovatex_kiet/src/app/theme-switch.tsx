@@ -1,43 +1,54 @@
-'use client'; // Ensure this is client-side
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Switch } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
 import { MoonIcon } from './MoonIcon'; // Assuming you have this icon component
 import { SunIcon } from './SunIcon'; // Assuming you have this icon component
 
 export default function App() {
-  // Use the next-themes hook to manage the theme
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Ensure component is mounted before rendering theme-related components
   useEffect(() => setMounted(true), []);
 
-  // Prevent rendering until mounted to avoid hydration mismatch
   if (!mounted) return null;
 
-  // Determine if dark mode is currently enabled
   const isDarkMode = resolvedTheme === 'dark';
 
+  const handleChange = () => {
+    setTheme(isDarkMode ? 'light' : 'dark');
+  };
+
   return (
-     <div className="flex items-center space-x-2">
-      <Switch
-        size="lg"
-        color="secondary"
-        checked={isDarkMode} // Check based on the current theme
-        onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')} // Toggle between light and dark themes
-        thumbIcon={({ isSelected, className }) =>
-          isSelected ? (
-            <SunIcon className={`w-6 h-6 ${className} `} /> // Larger Sun icon for dark mode
-          ) : (
-            <MoonIcon className={`w-6 h-6 ${className} `} /> // Larger Moon icon for light mode
-          )
-        }
-      >
-        {/* Dark mode */}
-      </Switch>
-      <span className="font-bold text-lg dark:text-white ">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span> {/* Label */}
+    <div className="flex items-center space-x-4">
+
+      <div className="relative">
+        {/* Custom switch track */}
+        <div className="relative w-14 h-7 bg-gray-300 rounded-full transition-colors duration-300 ease-in-out">
+          {/* Slider knob */}
+          <div
+            className={`absolute top-1/2 transform -translate-y-1/2 w-7 h-7 bg-white rounded-full shadow-md transition-transform duration-250 ease-in-out ${isDarkMode ? 'translate-x-0' : 'translate-x-0'}`}
+            style={{ left: isDarkMode ? 'calc(100% - 1.7rem)' : '0' }} // Adjusted left position
+          >
+            {/* Icon inside the knob */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {isDarkMode ? (
+                <SunIcon className="w-4 h-4 text-yellow-500" />
+              ) : (
+                <MoonIcon className="w-4 h-4 text-gray-600" />
+              )}
+            </div>
+          </div>
+
+          {/* Hidden checkbox to control the switch */}
+          <input
+            type="checkbox"
+            checked={isDarkMode}
+            onChange={handleChange}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          />
+        </div>
+      </div>
     </div>
   );
 }
