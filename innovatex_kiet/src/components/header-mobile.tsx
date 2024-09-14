@@ -158,10 +158,12 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
     <>
       <MenuItem>
         <button
+
           className="flex w-full text-2xl dark:text-white dark:bg-gray-900"
+
           onClick={() => setSubMenuOpen(!subMenuOpen)}
         >
-          <div className="flex flex-row justify-between w-full items-center">
+          <div className="flex flex-row justify-between w-full items-center dark:text-white dark:bg-gray-900">
             <span
               className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}
             >
