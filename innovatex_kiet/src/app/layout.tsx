@@ -35,7 +35,8 @@ export default function RootLayout({
             <MarginWidthWrapper>
                  <Header />
               <HeaderMobile />
-               <PageWrapper>{children}</PageWrapper>
+              {children}
+               {/* <PageWrapper>{children}</PageWrapper> */}
             </MarginWidthWrapper>
           </main>
         </div>

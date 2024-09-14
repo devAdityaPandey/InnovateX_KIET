@@ -21,7 +21,7 @@ const SideNav = () => {
           <span className="font-bold text-xl hidden md:flex text-gray-900 dark:text-gray-100">Logo</span>
         </Link>
 
-        <div className="flex flex-col space-y-2  md:px-6">
+        <div className="flex flex-col space-y-2  md:px-6  text-gray-900 dark:text-white">
           {SIDENAV_ITEMS.map((item, idx) => {
             return <MenuItem key={idx} item={item} />;
           })}
@@ -69,7 +69,8 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
               pathname.includes(item.path) ? 'bg-zinc-100 dark:bg-gray-800' : ''
             }`}
           >
-            <div className="flex flex-row space-x-4 items-center">
+            {/* <div className="flex flex-row space-x-4 items-center"> */}
+            <div  className='flex flex-row space-x-4 items-center text-gray-900 dark:text-white'>
               {item.icon}
               <span className="font-semibold text-xl flex text-gray-900 dark:text-gray-100">
                 {item.title}
