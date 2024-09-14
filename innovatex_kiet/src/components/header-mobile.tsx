@@ -51,7 +51,7 @@ const HeaderMobile = () => {
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white"
+        className="absolute inset-0 right-0 w-full bg-white dark:text-white dark:bg-gray-900"
         variants={sidebar}
       />
       <motion.ul
@@ -70,7 +70,7 @@ const HeaderMobile = () => {
                   <Link
                     href={item.path}
                     onClick={() => toggleOpen()}
-                    className={`flex w-full text-2xl ${
+                    className={`flex w-full text-2xl dark:text-white dark:bg-gray-900 ${
                       item.path === pathname ? 'font-bold' : ''
                     }`}
                   >
@@ -158,7 +158,9 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
     <>
       <MenuItem>
         <button
-          className="flex w-full text-2xl "
+
+          className="flex w-full text-2xl dark:text-white dark:bg-gray-900"
+
           onClick={() => setSubMenuOpen(!subMenuOpen)}
         >
           <div className="flex flex-row justify-between w-full items-center dark:text-white dark:bg-gray-900">
@@ -173,7 +175,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
           </div>
         </button>
       </MenuItem>
-      <div className="mt-2 ml-2 flex flex-col space-y-2">
+      <div className="mt-2 ml-2 flex flex-col space-y-2 dark:text-white dark:bg-gray-900">
         {subMenuOpen && (
           <>
             {item.subMenuItems?.map((subItem, subIdx) => {
