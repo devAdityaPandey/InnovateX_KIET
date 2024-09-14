@@ -1,6 +1,14 @@
+
+
+
+
+
 'use client';
 
+
+import { Switch } from '@nextui-org/react';
 import React, { useState, useEffect } from 'react';
+
 import { useTheme } from 'next-themes';
 import { MoonIcon } from './MoonIcon'; // Assuming you have this icon component
 import { SunIcon } from './SunIcon'; // Assuming you have this icon component
@@ -52,3 +60,4 @@ export default function App() {
     </div>
   );
 }
+
