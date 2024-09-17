@@ -30,17 +30,34 @@ export default function RootLayout({
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <Providers>
         <div className="flex">
+          {/* <div className="flex-1">
           <SideNav />
-          <main className="flex-1">
+          </div> */}
+          {/* <main className="flex-2">
             <MarginWidthWrapper>
                  <Header />
               <HeaderMobile />
-
-
                {children}
-
+            </MarginWidthWrapper>
+          </main> */}
+     {/* <div className="flex-3">
+          <SideNav />
+          </div> */}
+            <div className="flex-none w-15%">
+               <SideNav />
+      </div>
+      <div className="flex-auto w-60%">
+        <main className="flex-2">
+            <MarginWidthWrapper>
+                 <Header />
+              <HeaderMobile />
+               {children}
             </MarginWidthWrapper>
           </main>
+      </div>
+      <div className="flex-auto w-15%">
+               <SideNav />
+      </div>
         </div>
         </Providers>
       </body>
