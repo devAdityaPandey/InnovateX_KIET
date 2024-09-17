@@ -1,10 +1,8 @@
 'use client';
 
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import { SIDENAV_ITEMS } from '@/constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react';
@@ -51,7 +49,7 @@ const HeaderMobile = () => {
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white dark:text-white dark:bg-gray-900"
+        className="absolute inset-0 right-0 w-full bg-white dark:bg-gray-900"
         variants={sidebar}
       />
       <motion.ul
@@ -70,17 +68,14 @@ const HeaderMobile = () => {
                   <Link
                     href={item.path}
                     onClick={() => toggleOpen()}
-                    className={`flex w-full text-2xl dark:text-white dark:bg-gray-900 ${
-                      item.path === pathname ? 'font-bold' : ''
-                    }`}
+                    className={`flex w-full text-2xl dark:text-white ${item.path === pathname ? 'font-bold' : ''}`}
                   >
                     {item.title}
                   </Link>
                 </MenuItem>
               )}
-
               {!isLastItem && (
-                <MenuItem className="my-3 h-px w-full bg-gray-300 dark:text-white dark:bg-gray-900" />
+                <MenuItem className="my-3 h-px w-full bg-gray-300 dark:bg-gray-700" />
               )}
             </div>
           );
@@ -98,12 +93,13 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
     onClick={toggle}
     className="pointer-events-auto absolute right-4 top-[14px] z-30 "
   >
-    <svg width="23" height="23" viewBox="0 0 23 23" className=' '>
+    <svg width="23" height="23" viewBox="0 0 23 23" className="stroke-current text-gray-800 dark:text-white">
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5' },
           open: { d: 'M 3 16.5 L 17 2.5' },
         }}
+        stroke="currentColor" // Adapts to the dark mode
       />
       <Path
         d="M 2 9.423 L 20 9.423"
@@ -112,12 +108,14 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
           open: { opacity: 0 },
         }}
         transition={{ duration: 0.1 }}
+        stroke="currentColor"
       />
       <Path
         variants={{
           closed: { d: 'M 2 16.346 L 20 16.346' },
           open: { d: 'M 3 2.5 L 17 16.346' },
         }}
+        stroke="currentColor"
       />
     </svg>
   </button>
@@ -127,7 +125,7 @@ const Path = (props: any) => (
   <motion.path
     fill="transparent"
     strokeWidth="2"
-    stroke="hsl(0, 0%, 18%)"
+    stroke="currentColor"
     strokeLinecap="round"
     className="dark:stroke-white stroke-black"
     {...props}
@@ -160,41 +158,32 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
       <MenuItem>
         <button
           className="flex w-full text-2xl dark:text-white dark:bg-gray-900"
-          onClick={() => setSubMenuOpen(!subMenuOpen)}
-        >
-          <div className="flex flex-row justify-between w-full items-center dark:text-white dark:bg-gray-900">
-            <span
-              className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}
-            >
+          onClick={() => setSubMenuOpen(!subMenuOpen)}>
+          <div className="flex flex-row justify-between w-full items-center">
+            <span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>
               {item.title}
             </span>
-            <div className={`${subMenuOpen && 'rotate-180'}`}>
+            <div className={`transition-transform ${subMenuOpen && 'rotate-180'}`}>
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div>
           </div>
         </button>
       </MenuItem>
-      <div className="mt-2 ml-2 flex flex-col space-y-2 dark:text-white dark:bg-gray-900">
-        {subMenuOpen && (
-          <>
-            {item.subMenuItems?.map((subItem, subIdx) => {
-              return (
-                <MenuItem key={subIdx}>
-                  <Link
-                    href={subItem.path}
-                    onClick={() => toggleOpen()}
-                    className={` ${
-                      subItem.path === pathname ? 'font-bold' : ''
-                    }`}
-                  >
-                    {subItem.title}
-                  </Link>
-                </MenuItem>
-              );
-            })}
-          </>
-        )}
-      </div>
+      {subMenuOpen && (
+        <div className="mt-2 ml-2 flex flex-col space-y-2 dark:text-white">
+          {item.subMenuItems?.map((subItem, subIdx) => (
+            <MenuItem key={subIdx}>
+              <Link
+                href={subItem.path}
+                onClick={() => toggleOpen()}
+                className={`${subItem.path === pathname ? 'font-bold' : ''}`}
+              >
+                {subItem.title}
+              </Link>
+            </MenuItem>
+          ))}
+        </div>
+      )}
     </>
   );
 };
@@ -234,7 +223,6 @@ const useDimensions = (ref: any) => {
       dimensions.current.width = ref.current.offsetWidth;
       dimensions.current.height = ref.current.offsetHeight;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 
   return dimensions.current;
