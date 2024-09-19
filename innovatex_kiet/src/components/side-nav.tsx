@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import { SIDENAV_ITEMS } from '@/constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react';
@@ -28,7 +27,7 @@ const SideNav = () => {
           className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 dark:border-gray-700 h-12 w-full"
         >
           <span className="h-7 w-7 bg-zinc-300 dark:bg-gray-600 rounded-lg" />
-          <span className="font-bold text-xl hidden md:flex text-gray-900 dark:text-gray-100">Logo</span>
+          <span className="font-bold text-xl hidden md:flex text-gray-900 dark:text-gray-100">LOGO</span>
         </Link>
 
 

@@ -43,7 +43,9 @@ const HeaderMobile = () => {
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${isOpen ? '' : 'pointer-events-none'}`}
+      className={`fixed inset-0 z-50 w-full  md:hidden ${
+        isOpen ? '' : 'pointer-events-none'
+      }`}
       ref={containerRef}
     >
       <motion.div
@@ -52,7 +54,7 @@ const HeaderMobile = () => {
       />
       <motion.ul
         variants={variants}
-        className="absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto"
+        className="absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto "
       >
         {SIDENAV_ITEMS.map((item, idx) => {
           const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
@@ -89,7 +91,7 @@ export default HeaderMobile;
 const MenuToggle = ({ toggle }: { toggle: any }) => (
   <button
     onClick={toggle}
-    className="pointer-events-auto absolute right-4 top-[14px] z-30"
+    className="pointer-events-auto absolute right-4 top-[14px] z-30 "
   >
     <svg width="23" height="23" viewBox="0 0 23 23" className="stroke-current text-gray-800 dark:text-white">
       <Path
@@ -125,6 +127,7 @@ const Path = (props: any) => (
     strokeWidth="2"
     stroke="currentColor"
     strokeLinecap="round"
+    className="dark:stroke-white stroke-black"
     {...props}
   />
 );
@@ -154,9 +157,8 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
     <>
       <MenuItem>
         <button
-          className="flex w-full text-2xl dark:text-white"
-          onClick={() => setSubMenuOpen(!subMenuOpen)}
-        >
+          className="flex w-full text-2xl dark:text-white dark:bg-gray-900"
+          onClick={() => setSubMenuOpen(!subMenuOpen)}>
           <div className="flex flex-row justify-between w-full items-center">
             <span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>
               {item.title}

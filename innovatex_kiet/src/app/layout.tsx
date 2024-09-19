@@ -27,18 +27,18 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <Providers>
-          <div>
+          <div className=''>
             <SideNav />
-            <main>
-              <MarginWidthWrapper>
                 <Header />
                 <HeaderMobile />
+            <main>
+              <MarginWidthWrapper>
                 {children}
-                <aside className="fixed right-0 top-0 h-full w-[300px] p-4 bg-gray-200 dark:bg-gray-800">
-                  <Leaderboard  />
-                </aside>
               </MarginWidthWrapper>
             </main>
+             <div className=" md:w-60 fixed right-0 top-0 h-full p-4 bg-gray-200 dark:bg-gray-800 -z-10">
+                  <Leaderboard  />
+              </div>
           </div>
         </Providers>
       </body>

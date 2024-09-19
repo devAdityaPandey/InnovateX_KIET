@@ -21,7 +21,6 @@ export async function connectToDatabase() {
     cachedConnection = connection.connection;
     console.log('Connected to MongoDB');
     return { db: cachedConnection };
-
   } catch (error) {
     console.error('Failed to connect to MongoDB with Mongoose:', error);
     throw new Error('Failed to connect to MongoDB');
