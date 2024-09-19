@@ -97,7 +97,7 @@ const Dashboard = () => {
 
   return (
    <>
-   <p>homepage</p>
+   <p className='text-black dark:text-white'>homepage</p>
    </>
   );
 };
