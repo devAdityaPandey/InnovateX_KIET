@@ -1,5 +1,5 @@
 import React from "react";
-export const SunIcon = (props) => (
+export const SunIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     aria-hidden="true"
     focusable="false"

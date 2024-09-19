@@ -9,14 +9,12 @@ interface CreatePostProps {
 const CreatePost = ({ onCreate }: CreatePostProps) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newPost: FeedItem = {
       id: new Date().toISOString(),
-      author, // Mapping author to name
       content,
       title,
       time: new Date().toISOString(),
@@ -42,7 +40,6 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
       onCreate(newPost);
       setTitle('');
       setContent('');
-      setAuthor('');
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -68,16 +65,6 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
           onChange={(e) => setContent(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows={4}
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-medium mb-2">Author</label>
-        <input
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
       </div>

@@ -4,6 +4,10 @@ import { connectToDatabase } from '@/lib/mongodb';
 export async function POST(request: NextRequest) {
   const { db } = await connectToDatabase();
 
+  if (!db) {
+    return NextResponse.json({ message: 'Database connection failed' }, { status: 500 });
+  }
+
   try {
     const { title, content, author } = await request.json();
 

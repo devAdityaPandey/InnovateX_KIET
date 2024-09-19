@@ -2,14 +2,13 @@ import '../styles/globals.css';
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
+import { Leaderboard } from '@/components/leaderboard';
 import Header from '@/components/header';
 import HeaderMobile from '@/components/header-mobile';
 import MarginWidthWrapper from '@/components/margin-width-wrapper';
 import PageWrapper from '@/components/page-wrapper';
 import SideNav from '@/components/side-nav';
 import { Providers } from './provider';
-
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,22 +25,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <body className={`bg-white ${inter.className}`}> */}
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <Providers>
-        <div className="flex">
-          <SideNav />
-          <main className="flex-1">
-            <MarginWidthWrapper>
-                 <Header />
-              <HeaderMobile />
-
-
-               {children}
-
-            </MarginWidthWrapper>
-          </main>
-        </div>
+          <div>
+            <SideNav />
+            <main>
+              <MarginWidthWrapper>
+                <Header />
+                <HeaderMobile />
+                {children}
+                <aside className="fixed right-0 top-0 h-full w-[300px] p-4 bg-gray-200 dark:bg-gray-800">
+                  <Leaderboard  />
+                </aside>
+              </MarginWidthWrapper>
+            </main>
+          </div>
         </Providers>
       </body>
     </html>

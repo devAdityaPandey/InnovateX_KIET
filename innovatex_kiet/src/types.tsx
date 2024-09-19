@@ -9,7 +9,6 @@ export type SideNavItem = {
 export type FeedItem = {
   id: string;
   title: string;
-  author: string;
   content: string;
   image?: string;
   upvotes: string[];
