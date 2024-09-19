@@ -2,14 +2,13 @@ import '../styles/globals.css';
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
+import { Leaderboard } from '@/components/leaderboard';
 import Header from '@/components/header';
 import HeaderMobile from '@/components/header-mobile';
 import MarginWidthWrapper from '@/components/margin-width-wrapper';
 import PageWrapper from '@/components/page-wrapper';
 import SideNav from '@/components/side-nav';
 import { Providers } from './provider';
-
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,39 +25,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <body className={`bg-white ${inter.className}`}> */}
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <Providers>
-        <div className="flex">
-          {/* <div className="flex-1">
-          <SideNav />
-          </div> */}
-          {/* <main className="flex-2">
-            <MarginWidthWrapper>
-                 <Header />
-              <HeaderMobile />
-               {children}
-            </MarginWidthWrapper>
-          </main> */}
-     {/* <div className="flex-3">
-          <SideNav />
-          </div> */}
-            <div className="flex-none w-15%">
-               <SideNav />
-      </div>
-      <div className="flex-auto w-60%">
-        <main className="flex-2">
-            <MarginWidthWrapper>
-                 <Header />
-              <HeaderMobile />
-               {children}
-            </MarginWidthWrapper>
-          </main>
-      </div>
-      <div className="flex-auto w-15%">
-               <SideNav />
-      </div>
-        </div>
+          <div className=''>
+            <SideNav />
+                <Header />
+                <HeaderMobile />
+            <main>
+              <MarginWidthWrapper>
+                {children}
+              </MarginWidthWrapper>
+            </main>
+             <div className=" md:w-60 fixed right-0 top-0 h-full p-4 bg-gray-200 dark:bg-gray-800 -z-10">
+                  <Leaderboard  />
+              </div>
+          </div>
         </Providers>
       </body>
     </html>

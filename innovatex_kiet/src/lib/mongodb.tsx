@@ -1,28 +1,26 @@
-import { MongoClient, Db } from 'mongodb';
+import mongoose, { Connection } from 'mongoose';
 
 const uri = process.env.MONGODB_URI || '';
-const client = new MongoClient(uri);
-
-let cachedClient: MongoClient | null = null;
-let cachedDb: Db | null = null;
+let cachedConnection: Connection | null = null;
 
 export async function connectToDatabase() {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
+  if (cachedConnection && cachedConnection.readyState === 1) {
+    // Return the cached connection if it's already connected
+    return cachedConnection;
   }
 
   try {
-    await client.connect();
-    const db = client.db(process.env.MONGODB_DB || 'myDatabase');
+    // Establish a new connection if not cached
+    const connection = await mongoose.connect(uri, {
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
+    });
 
-    // Check connection
-    await db.command({ ping: 1 });
-    
-    cachedClient = client;
-    cachedDb = db;
-    return { client, db };
+    cachedConnection = connection.connection;
+
+    return cachedConnection;
   } catch (error) {
-    console.error('Failed to connect to MongoDB:', error);
+    console.error('Failed to connect to MongoDB with Mongoose:', error);
     throw new Error('Failed to connect to MongoDB');
   }
 }
