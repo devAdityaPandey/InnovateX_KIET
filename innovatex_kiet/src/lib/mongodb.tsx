@@ -1,7 +1,7 @@
-import mongoose, { Connection } from 'mongoose';
+import mongoose from 'mongoose';
 
 const uri = process.env.MONGODB_URI || '';
-let cachedConnection: Connection | null = null;
+let cachedConnection: mongoose.Connection | null = null;
 
 export async function connectToDatabase() {
 

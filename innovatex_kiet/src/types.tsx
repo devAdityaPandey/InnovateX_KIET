@@ -8,13 +8,15 @@ export type SideNavItem = {
 };
 export type FeedItem = {
   id: string;
+  author: string;
   title: string;
   content: string;
-  image?: string;
+  images: string[];
   upvotes: string[];
   isUpvoted: boolean;
   isSaved: boolean;
-  time: string;
+  updatedAt: string;
+  createdAt:string;
 }
 
 export type LeaderboardData = {

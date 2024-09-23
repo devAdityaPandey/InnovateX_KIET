@@ -26,7 +26,7 @@ export const Leaderboard = () => {
     useEffect(() => {
         const fetchFeed = async () => {
             try {
-                const res = await fetch('/api/feed');
+                const res = await fetch('/api/posts');
                 const data = await res.json();
                 setFeed(data.data);
             } catch (error) {
@@ -38,33 +38,38 @@ export const Leaderboard = () => {
             try {
                 const res = await fetch('/api/leaderboard');
                 const data = await res.json();
-                const leaderboard = data.data.map((user: { name: string }) => user.name);
-                const points = data.data.map((user: { points: number }) => user.points);
 
-                setLeaderboardData({
-                    labels: leaderboard,
-                    datasets: [
-                        {
-                            label: 'Points',
-                            data: points,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                            ],
-                            borderWidth: 1,
-                        },
-                    ],
-                });
+                if (data.success && data.data) {
+                    const leaderboard = data.data.map((user: { name: string }) => user.name);
+                    const points = data.data.map((user: { points: number }) => user.points);
+
+                    setLeaderboardData({
+                        labels: leaderboard,
+                        datasets: [
+                            {
+                                label: 'Points',
+                                data: points,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                ],
+                                borderWidth: 1,
+                            },
+                        ],
+                    });
+                } else {
+                    throw new Error('Failed to fetch leaderboard data');
+                }
             } catch (error) {
                 console.error('Failed to fetch leaderboard data', error);
                 setError('Failed to load leaderboard data.');
@@ -104,4 +109,3 @@ export const Leaderboard = () => {
         </div>
     );
 };
-
