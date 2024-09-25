@@ -15,13 +15,13 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
     e.preventDefault();
 
     const newPost: FeedItem = {
-      id: new Date().toISOString(), // Use '_id' for consistency with your FeedItem type
-      author: 'your_user_id', // Replace with your user ID
+      _id: new Date().toISOString(),
+      author: 'user_id',
       content,
-      createdAt: new Date().toISOString(), // Set createdAt
-      images: [], // Adjust based on your image handling logic
+      createdAt: new Date().toISOString(),
+      images: [],
       title,
-      updatedAt: new Date().toISOString(), // Set updatedAt
+      updatedAt: new Date().toISOString(),
       upvotes: [],
       isUpvoted: false,
       isSaved: false,

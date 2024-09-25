@@ -7,7 +7,7 @@ export type SideNavItem = {
   isBottom: boolean;
 };
 export type FeedItem = {
-  id: string;
+  _id: string;
   author: string;
   title: string;
   content: string;
