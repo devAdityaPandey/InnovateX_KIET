@@ -9,6 +9,7 @@ import MarginWidthWrapper from '@/components/margin-width-wrapper';
 import PageWrapper from '@/components/page-wrapper';
 import SideNav from '@/components/side-nav';
 import { Providers } from './provider';
+import { UserProvider } from '@/context/userContext';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
+        <UserProvider>
         <Providers>
           <div className=''>
             <SideNav />
@@ -41,6 +43,7 @@ export default function RootLayout({
               </div>
           </div>
         </Providers>
+        </UserProvider>
       </body>
     </html>
   );

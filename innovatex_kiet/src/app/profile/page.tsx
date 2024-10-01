@@ -1,17 +1,30 @@
-import React from 'react';
+"use client";
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import Profile from '@/components/helper-profile';
 
+interface Helper {
+    _id: string;
+    name: string;
+    email: string;
+    requestsReceived: any[];
+}
 
-const Profile = () => {
-  return (
-    <>
-      <span className="font-bold text-4xl dark:text-white">Profile</span>
-
-      <div className="border-dashed border border-zinc-500 dark:border-zinc-600 w-full h-12 rounded-lg"></div>
-      <div className="border-dashed border border-zinc-500 dark:border-zinc-600 w-full h-64 rounded-lg"></div>
-    </>
-  );
+const ProfilePage = () => {
+    return (
+        <div className="p-4">
+                <Profile
+                    name="profile"
+                    email="email"
+                    registerNumber="123456" 
+                    degree="B.Sc" 
+                    batch={2024}
+                    college="XYZ University"
+                    profileImage="/images/profile.jpg" 
+                    level={1}
+                />
+        </div>
+    );
 };
 
-export default Profile;
-
-
+export default ProfilePage;
