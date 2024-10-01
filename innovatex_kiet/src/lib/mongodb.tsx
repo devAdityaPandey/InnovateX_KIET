@@ -4,6 +4,8 @@ const uri = process.env.MONGODB_URI || '';
 let cachedConnection: Connection | null = null;
 
 export async function connectToDatabase() {
+ 
+ 
   if (cachedConnection && cachedConnection.readyState === 1) {
     // Return the cached connection if it's already connected
     return cachedConnection;
