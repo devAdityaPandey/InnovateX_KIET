@@ -5,6 +5,10 @@ const leaderboardSchema = new Schema({
         type: String,
         required: true
     },
+    department: {
+        type: String,
+        required: true
+    },
     points: {
         type: Number,
         required: true

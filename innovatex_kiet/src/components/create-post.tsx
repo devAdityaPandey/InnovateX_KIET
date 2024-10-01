@@ -54,9 +54,9 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
   };
 
   return (
-    <div className="flex items-center p-4 bg-white shadow-sm rounded-lg  dark:text-white dark:bg-gray-900 dark:border border-white">
+    <div className="flex flex-col md:flex-row items-center p-4 bg-white shadow-sm rounded-lg dark:text-white dark:bg-gray-900 dark:border border-white">
       <img
-        src="/path/to/profile.jpg" // Replace with actual user profile path
+      src="/path/to/profile.jpg" // Replace with actual user profile path
         alt="User"
         className="w-10 h-10 rounded-full border border-black object-cover dark:border-white"
       />

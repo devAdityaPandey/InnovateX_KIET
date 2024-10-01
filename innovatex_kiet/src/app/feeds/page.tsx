@@ -60,7 +60,7 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex flex-col bg-gray-100 dark:text-white dark:bg-gray-900">
+    <div className="flex flex-col  bg-gray-100 dark:text-white dark:bg-gray-900">
       <div className="h-1/4 p-6">
         <CreatePost onCreate={handleCreatePost} />
       </div>
