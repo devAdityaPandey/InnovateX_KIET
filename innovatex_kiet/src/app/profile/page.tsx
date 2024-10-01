@@ -16,12 +16,12 @@ const ProfilePage = () => {
                 <Profile
                     name="profile"
                     email="email"
-                    registerNumber="123456" // Replace with actual data
-                    degree="B.Sc" // Replace with actual data
-                    batch={2024} // Replace with actual data
-                    college="XYZ University" // Replace with actual data
-                    profileImage="/images/profile.jpg" // Replace with actual data
-                    level={1} // Replace with actual data
+                    registerNumber="123456" 
+                    degree="B.Sc" 
+                    batch={2024}
+                    college="XYZ University"
+                    profileImage="/images/profile.jpg" 
+                    level={1}
                 />
         </div>
     );
