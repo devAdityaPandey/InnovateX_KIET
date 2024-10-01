@@ -58,7 +58,7 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
       <img
         src="/path/to/profile.jpg" // Replace with actual user profile path
         alt="User"
-        className="w-10 h-10 rounded-full border border-black object-cover dark:border border-white"
+        className="w-10 h-10 rounded-full border border-black object-cover dark:border-white"
       />
       <form onSubmit={handleSubmit} className="flex-grow ml-4">
         <input
@@ -79,15 +79,15 @@ const CreatePost = ({ onCreate }: CreatePostProps) => {
         />
       </form>
       <div className="flex items-center space-x-4 ml-4">
-        <button type="button" className="flex items-center space-x-2 border border-black text-blue-500 hover:bg-blue-100 p-2 rounded-lg dark:border border-white">
+        <button type="button" className="flex items-center space-x-2 border border-black text-blue-500 hover:bg-blue-100 p-2 rounded-lg dark:border-white">
           <FaRegImage className="w-6 h-6" />
           <span>Media</span>
         </button>
-        <button type="button" className="flex items-center space-x-2 text-purple-500 border border-black hover:bg-purple-100 p-2 rounded-lg dark:border border-white">
+        <button type="button" className="flex items-center space-x-2 text-purple-500 border border-black hover:bg-purple-100 p-2 rounded-lg dark:border-white">
           <FaHandsHelping className="w-6 h-6" />
           <span>Appeal</span>
         </button>
-        <button type="button" className="flex items-center space-x-2 text-red-500 border border-black hover:bg-red-100 p-2 rounded-lg dark:border border-white">
+        <button type="button" className="flex items-center space-x-2 text-red-500 border border-black hover:bg-red-100 p-2 rounded-lg dark:border-white">
           <FaFileAlt className="w-6 h-6" />
           <span>Write article</span>
         </button>

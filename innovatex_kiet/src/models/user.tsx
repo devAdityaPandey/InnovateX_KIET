@@ -35,11 +35,11 @@ const userSchema: Schema<IUser> = new Schema({
     },
     image: {
         type: String
-    },  // Optional image field
+    }, 
     dept: {
         type: String,
         required: true,
-        enum: ['MCA', 'Computer Science', 'Civil', 'Mechanical', 'Electrical'],  // Specific department values
+        enum: ['MCA', 'Computer Science', 'Civil', 'Mechanical', 'Electrical'],
     },
     UpvotedPost: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -49,15 +49,15 @@ const userSchema: Schema<IUser> = new Schema({
         type : Number,
     },
     Posts: [{
-        type: mongoose.Schema.Types.ObjectId,     // Total posts by the user
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
     }],  
     following: [{
-        type: mongoose.Schema.Types.ObjectId,     // Following users
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],  
     followers: [{
-        type: mongoose.Schema.Types.ObjectId,     // Followers
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     }],  
     requestsMade: [{
@@ -72,6 +72,7 @@ const userSchema: Schema<IUser> = new Schema({
         type: Date,
         default: Date.now
     },
+
 });
 
 const User = mongoose.models.Post || mongoose.model<IUser>('Post', userSchema);
