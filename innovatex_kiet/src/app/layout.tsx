@@ -28,21 +28,21 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <UserProvider>
-        <Providers>
-          <div className=''>
-            <SideNav />
-                <Header />
-                <HeaderMobile />
-            <main>
-              <MarginWidthWrapper>
-                {children}
-              </MarginWidthWrapper>
-            </main>
-             <div className=" md:w-60 fixed right-0 top-0 h-full p-4 bg-gray-200 dark:bg-gray-800 -z-10">
-                  <Leaderboard  />
-              </div>
-          </div>
-        </Providers>
+          <Providers>
+            <div className=''>
+              <SideNav />
+              <Header />
+              <HeaderMobile />
+              <main>
+                <MarginWidthWrapper>
+                  {children}
+                </MarginWidthWrapper>
+              </main>
+                <div className="hidden lg:block fixed right-0 top-0 h-full w-1/4 p-4 bg-gray-200 dark:bg-gray-800 z-10">
+                <Leaderboard />
+                </div>
+            </div>
+          </Providers>
         </UserProvider>
       </body>
     </html>
