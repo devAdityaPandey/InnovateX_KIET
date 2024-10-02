@@ -53,7 +53,7 @@
 
 import nodemailer from "nodemailer";
 import bcryptjs from "bcryptjs";
-import User from "@/models/userModel";
+import User from "@/models/user";
 
 // Define the types for the function parameters
 interface SendEmailParams {

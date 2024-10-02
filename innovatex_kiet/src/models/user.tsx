@@ -4,6 +4,10 @@ interface IUser extends Document {
     name: string;
     email: string;
     password: string;
+    forgetPasswordToken: string;
+    forgetPasswordTokenExpiry : Date;
+    verifyToken: string;
+    verifyTokenExpiry: Date;
     image: string;  // URL or base64 encoded image
     dept: string;   // Department the user belongs to
     Posts: mongoose.Schema.Types.ObjectId[];  // Number of posts the user has created
@@ -12,6 +16,8 @@ interface IUser extends Document {
     followers: mongoose.Schema.Types.ObjectId[];  // Users following the user
     createdAt: Date;
     contibutionPoint: number;
+    isVerified: boolean;
+    isAdmin: boolean;
     requestsMade: mongoose.Schema.Types.ObjectId[];
     requestsReceived:mongoose.Schema.Types.ObjectId[];
 }
@@ -43,7 +49,7 @@ const userSchema: Schema<IUser> = new Schema({
     }, 
     dept: {
         type: String,
-        required: true,
+        // required: true,
         enum: ['MCA', 'Computer Science', 'Civil', 'Mechanical', 'Electrical'],
     },
     UpvotedPost: [{
@@ -93,5 +99,7 @@ const userSchema: Schema<IUser> = new Schema({
 
 });
 
-const User = mongoose.models.Post || mongoose.model<IUser>('Post', userSchema);
+// const User = mongoose.models.Post || mongoose.model<IUser>('Post', userSchema);
+const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema);
+
 export default User;

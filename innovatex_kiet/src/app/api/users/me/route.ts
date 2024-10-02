@@ -1,22 +1,19 @@
-import { connect } from "@/db/db";
-import User from "@/models/userModel"
+import { connectToDatabase } from "@/lib/mongodb";
+import User from "@/models/user";
 import { NextRequest, NextResponse } from "next/server";
 
-import { getDataFromToken } from "@/utils/getDataFromToken";
+import { getDataFromToken } from "@/lib/getDataFromToken";
 
-connect();
+connectToDatabase();
 
-export async function POST(request : NextRequest){
-try {
+export async function POST(request: NextRequest) {
+  try {
     const userId = await getDataFromToken(request);
 
-    const user = await User.findById({_id : userId}).select("-password")
+    const user = await User.findById({ _id: userId }).select("-password");
 
-    return NextResponse.json({message : "User Found", data: user})
-
-} catch (error : any) {
-  return NextResponse.json({ error: error.message }, { status: 500 });       
-}
-
-
+    return NextResponse.json({ message: "User Found", data: user });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }

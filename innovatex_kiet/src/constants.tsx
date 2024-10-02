@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-
+import { useRouter } from 'next/router'; 
 import { SideNavItem } from './types';
 
 export const SIDENAV_ITEMS: SideNavItem[] = [
@@ -13,11 +13,9 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Profile',
-    path: '/profile',
+    path: '/users/profile',
     icon: <Icon icon="lucide:user" width="24" height="24" />,
-
     isBottom: false,
-
   },
   {
     title: 'Messages',
@@ -56,11 +54,36 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     isBottom: true,
   },
 
-  {
+  // {
+  //   title: 'Logout',
+  //   path: '/users/login',
+  //   icon: <Icon icon="lucide:log-out" width="24" height="24" />,
+  //   isBottom: true,
+  // }
+
+   {
     title: 'Logout',
-    path: '/',
+    // Set path as null or remove it since we will handle the logout separately
+    path: "/",
     icon: <Icon icon="lucide:log-out" width="24" height="24" />,
     isBottom: true,
-  }
+    // onClick: async () => {
+    //   // Your logout logic here
+    //   const response = await fetch('/api/users/logout', {
+    //     method: 'GET',
+    //   });
+
+    //   if (response.ok) {
+    //     // Clear the token from cookies
+    //     document.cookie = 'token=; Max-Age=0; path=/';
+    //     alert('Logged out successfully');
+    //     // Redirect to login
+    //     window.location.href = '/users/login'; // Use window.location.href to navigate
+    //   } else {
+    //     const errorData = await response.json();
+    //     alert(`Error: ${errorData.message}`);
+    //   }
+    // },
+  },
 ];
 

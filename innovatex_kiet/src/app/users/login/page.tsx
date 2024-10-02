@@ -65,7 +65,7 @@ export default function login() {
 
       // Alert success message and redirect to the homepage or dashboard
       alert('Logged in successfully');
-      router.push('/me'); // Navigate to the home page or dashboard
+      router.push('/users/profile'); // Navigate to the home page or dashboard
     } catch (error: any) {
       setError(error.message); // Set the error state to the error message
     } finally {
@@ -128,7 +128,7 @@ export default function login() {
 
         {/* Link to signup page */}
         <p className="mt-4 text-center">
-          Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a>
+          Don't have an account? <a href="/users/signup" className="text-blue-500">Sign up</a>
         </p>
       </div>
     </div>

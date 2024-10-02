@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from "@/db/db";
+import { connectToDatabase } from "@/lib/mongodb";
 
-connect();
+connectToDatabase();
 
 export async function GET(request: NextRequest) {
   try {
