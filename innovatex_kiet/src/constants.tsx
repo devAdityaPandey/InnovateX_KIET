@@ -5,7 +5,7 @@ import { SideNavItem } from './types';
 export const SIDENAV_ITEMS: SideNavItem[] = [
   {
     title: 'Feeds',
-    path: '/feeds',
+    path: '/user/feeds',
     icon: <Icon icon="lucide:home" width="24" height="24" />,
 
     isBottom: false,
@@ -13,7 +13,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Profile',
-    path: '/profile',
+    path: '/user/profile',
     icon: <Icon icon="lucide:user" width="24" height="24" />,
 
     isBottom: false,
@@ -21,7 +21,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Messages',
-    path: '/messages',
+    path: '/user/messages',
     icon: <Icon icon="lucide:mail" width="24" height="24" />,
 
     isBottom: false,
@@ -29,7 +29,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Notification',
-    path: '/notification',
+    path: '/user/notification',
 
     icon: <Icon icon="lucide:bell" width="24" height="24" />,
     isBottom: false,
@@ -37,7 +37,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
 
   {
     title: 'Settings',
-    path: '/settings',
+    path: '/user/settings',
     icon: <Icon icon="lucide:settings" width="24" height="24" />,
     submenu: true,
     subMenuItems: [
@@ -50,7 +50,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'About',
-    path: '/about',
+    path: '/user/about',
 
     icon: <Icon icon="lucide:info" width="24" height="24" />,
     isBottom: true,
@@ -58,7 +58,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
 
   {
     title: 'Logout',
-    path: '/',
+    path: '/user/logout',
     icon: <Icon icon="lucide:log-out" width="24" height="24" />,
     isBottom: true,
   }
