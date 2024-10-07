@@ -12,6 +12,7 @@ import { Providers } from './provider';
 import ReduxProvider from '@/context/ReduxProvider';
 import { AuthProvider } from '@/context/authProvider';
 import { usePathname } from 'next/navigation';
+import ReduxPersister from '@/context/reduxPersister';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,17 +25,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`bg-white dark:bg-gray-900 text-gray-950 ${inter.className}`}>
         <ReduxProvider>
           <AuthProvider>
+            <ReduxPersister>
             <Providers>
               <div>
                 {/* Render components conditionally */}
                 {!isLoginPage && (
                   <>
-                    <SideNav />
+                    <SideNav />a
                     <Header />
                     <HeaderMobile />
                   </>
                 )}
-                
                 <main className={isLoginPage ? 'flex justify-center items-center min-h-screen' : ''}>
                   {isLoginPage ? (
                     // Centered layout for login page
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 )}
               </div>
             </Providers>
+            </ReduxPersister>
           </AuthProvider>
         </ReduxProvider>
       </body>

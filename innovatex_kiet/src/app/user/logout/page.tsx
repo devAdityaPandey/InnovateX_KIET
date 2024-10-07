@@ -1,18 +1,18 @@
-"use client"
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { logoutUser } from '@/lib/Redux/slices/userSlice';
+"use client"; // Add this at the top of the file
 
-const LogoutButton = () => {
-    const dispatch = useDispatch();
-    const router = useRouter();
+import React from 'react';
+import LogoutButton from '@/components/logout-button';
+import PrivateRoute from '@/components/privateRoute';
 
-    const handleLogout = () => {
-        dispatch(logoutUser());
-        router.push('/user/login');
-    };
-
-    return <button onClick={handleLogout}>Logout</button>;
+const LogoutPage: React.FC = () => {
+  return (
+    <PrivateRoute>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-6">Logout Page</h1>
+      <LogoutButton />
+    </div>
+    </PrivateRoute>
+  );
 };
 
-export default LogoutButton;
+export default LogoutPage;

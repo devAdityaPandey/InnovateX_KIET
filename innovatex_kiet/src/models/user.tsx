@@ -5,7 +5,7 @@ interface IUser extends Document {
     email: string;
     password: string;
     forgetPasswordToken: string;
-    forgetPasswordTokenExpiry : Date;
+    forgetPasswordTokenExpiry: Date;
     verifyToken: string;
     verifyTokenExpiry: Date;
     image: string;  // URL or base64 encoded image
@@ -19,15 +19,15 @@ interface IUser extends Document {
     isVerified: boolean;
     isAdmin: boolean;
     requestsMade: mongoose.Schema.Types.ObjectId[];
-    requestsReceived:mongoose.Schema.Types.ObjectId[];
+    requestsReceived: mongoose.Schema.Types.ObjectId[];
 }
 
 const userSchema: Schema<IUser> = new Schema({
     name: {
-    type: String,
-    required: [true, "Please enter a username"],
-    unique: true,
-  },
+        type: String,
+        required: [true, "Please enter a username"],
+        unique: true,
+    },
     email: {
         type: String,
         required: [true, "Please enter an email"],
@@ -39,14 +39,14 @@ const userSchema: Schema<IUser> = new Schema({
             message: 'Email must be in the format xyz.kiet.edu',
         },
     },
-     password: {
-    type: String,
-    required: [true, "Please enter a password"],
-    minlength: [6, "Password should be at least 6 characters long"],
-  },
+    password: {
+        type: String,
+        required: [true, "Please enter a password"],
+        minlength: [6, "Password should be at least 6 characters long"],
+    },
     image: {
         type: String
-    }, 
+    },
     dept: {
         type: String,
         // required: true,
@@ -56,21 +56,21 @@ const userSchema: Schema<IUser> = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
     }],
-    contibutionPoint:{
-        type : Number,
+    contibutionPoint: {
+        type: Number,
     },
     Posts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
-    }],  
+    }],
     following: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }],  
+    }],
     followers: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }],  
+    }],
     requestsMade: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Request'
@@ -80,23 +80,22 @@ const userSchema: Schema<IUser> = new Schema({
         ref: 'Request'
     }],
     isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
+        type: Boolean,
+        default: false,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
 
-  forgetPasswordToken: String,
-  forgetPasswordTokenExpiry: Date,
-  verifyToken: String,
-  verifyTokenExpiry: Date,
+    forgetPasswordToken: String,
+    forgetPasswordTokenExpiry: Date,
+    verifyToken: String,
+    verifyTokenExpiry: Date,
     createdAt: {
         type: Date,
         default: Date.now
     },
-
 });
 
 // const User = mongoose.models.Post || mongoose.model<IUser>('Post', userSchema);

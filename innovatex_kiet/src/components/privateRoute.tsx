@@ -1,23 +1,29 @@
-// components/PrivateRoute.tsx
 "use client";
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/authProvider';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(true); // Loading state to manage redirection
   const router = useRouter();
 
-  // If not authenticated, redirect to the login page
-  if (!isAuthenticated) {
-    if (typeof window !== 'undefined') {
-      router.push('/user/login');
+  useEffect(() => {
+    // If isAuthenticated is still null, we should wait for it to resolve
+    if (isAuthenticated === null) return;
+
+    if (isAuthenticated === false) {
+      router.push('/user/signup'); // Redirect if not authenticated
+    } else {
+      setIsLoading(false); // No redirect, so stop loading
     }
-    return null; // Do not render the component until redirection happens
+  }, [isAuthenticated, router]);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Show a loading indicator while checking auth state
   }
 
-  return <>{children}</>;
+  return <>{children}</>; // Render the children (protected component) when authenticated
 };
 
 export default PrivateRoute;

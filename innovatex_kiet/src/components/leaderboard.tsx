@@ -10,6 +10,7 @@ import {
     Legend,
     RadialLinearScale,
 } from 'chart.js';
+import PrivateRoute from './privateRoute';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, RadialLinearScale);
@@ -125,6 +126,7 @@ export const Leaderboard = () => {
     );
 
     return (
+        <PrivateRoute>
         <div className="mt-8">
             <div className="space-y-3">
                 {/* Departmental Chart */}
@@ -144,5 +146,6 @@ export const Leaderboard = () => {
                 </div>
             </div>
         </div>
+    </PrivateRoute>
     );
 };

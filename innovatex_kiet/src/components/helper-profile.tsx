@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 
 interface Experience {
+  id: number;
   company: string;
   role: string;
   duration: string;
@@ -16,101 +16,10 @@ interface ProfileProps {
   college: string;
   profileImage: string;
   level: number;
-  experiences?: Experience[]; // Optional experiences prop
+  experiences: Experience[];
 }
 
 const Profile: React.FC<ProfileProps> = ({
-=======
-// // /components/Profile.tsx
-// import React from 'react';
-
-// interface ProfileProps {
-//   name: string;
-//   email: string;
-//   registerNumber: string;
-//   degree: string;
-//   batch: number;
-//   college: string;
-//   profileImage: string;
-//   level: number;
-// }
-
-// const Profile: React.FC<ProfileProps> = ({
-//   name,
-//   email,
-//   registerNumber,
-//   degree,
-//   batch,
-//   college,
-//   profileImage,
-//   level,
-// }) => {
-//   return (
-//     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
-//       <div className="flex justify-between items-center">
-//         <h2 className="text-2xl font-semibold text-gray-800">Dashboard</h2>
-//         <p className="text-sm text-gray-500">
-//           Last Updated on 22/09/2024 | 04:18 PM
-//         </p>
-//       </div>
-//       <div className="relative mt-6">
-//         <img
-//           src="/images/banner.jpg"
-//           alt="Profile Banner"
-//           className="w-full h-32 rounded-t-lg object-cover"
-//         />
-//         <div className="absolute -bottom-12 left-6 w-24 h-24">
-//           <img
-//             src={profileImage}
-//             alt={name}
-//             className="w-24 h-24 rounded-full border-4 border-white object-cover"
-//           />
-//         </div>
-//       </div>
-//       <div className="mt-16 text-center">
-//         <h3 className="text-3xl font-bold text-gray-900">{name}</h3>
-//         <p className="text-sm text-gray-600">{email}</p>
-//         <div className="flex justify-center mt-4 text-gray-700 space-x-6">
-//           <p>
-//             <span className="font-semibold">Register Number :</span>{' '}
-//             {registerNumber}
-//           </p>
-//           <p>
-//             <span className="font-semibold">Degree :</span> {degree}
-//           </p>
-//           <p>
-//             <span className="font-semibold">Batch :</span> {batch}
-//           </p>
-//           <p>
-//             <span className="font-semibold">College :</span> {college}
-//           </p>
-//         </div>
-//         <div className="mt-6 flex justify-between items-center">
-//           <div>
-//             <span className="px-4 py-2 bg-green-100 text-green-700 text-sm rounded-full">
-//               Beginner
-//             </span>
-//           </div>
-//           <div>
-//             <span className="font-semibold text-gray-700">Level {level}</span>
-//             <span className="text-xs text-gray-500"> of 5</span>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
-
-// components/Profile.tsx// components/Profile.tsx
-import React from 'react';
-import { User } from '@/types'; // Adjust the import based on your folder structure
-
-const Profile: React.FC<User> = ({
->>>>>>> anand_fork/anand_branch
   name,
   email,
   registerNumber,
@@ -119,80 +28,45 @@ const Profile: React.FC<User> = ({
   college,
   profileImage,
   level,
-  experiences = [], // Default to an empty array if experiences is undefined
+  experiences,
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
   const [newExperience, setNewExperience] = useState<Experience>({
+    id: experiences.length + 1,
     company: '',
     role: '',
     duration: '',
   });
 
-  const [experienceList, setExperienceList] = useState<Experience[]>(experiences);
+  const handleExperienceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewExperience({ ...newExperience, [name]: value });
+  };
 
-  // Handle adding a new experience
-  const addExperience = () => {
-    if (newExperience.company && newExperience.role && newExperience.duration) {
-      setExperienceList([...experienceList, newExperience]);
-      setNewExperience({ company: '', role: '', duration: '' }); // Reset form
-    }
+  const handleAddExperience = () => {
+    experiences.push(newExperience);
+    setNewExperience({
+      id: experiences.length + 1,
+      company: '',
+      role: '',
+      duration: '',
+    });
+    setIsEditing(false);
   };
 
   return (
-<<<<<<< HEAD
     <div className="relative min-h-screen bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full bg-white shadow-2xl rounded-lg p-8 overflow-hidden transform transition-transform duration-500 hover:scale-105">
+        
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-4">
           <h2 className="text-3xl font-bold text-gray-900">Profile Dashboard</h2>
-          <p className="text-sm text-gray-500">
-            Last Updated on 22/09/2024 | 04:18 PM
-=======
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-800">Dashboard</h2>
-        <p className="text-sm text-gray-500">
-          Last Updated on 22/09/2024 | 04:18 PM
-        </p>
-      </div>
-      <div className="relative mt-6">
-        <img
-          src="/images/banner.jpg"
-          alt="Profile Banner"
-          className="w-full h-32 rounded-t-lg object-cover"
-        />
-        <div className="absolute -bottom-12 left-6 w-24 h-24">
-          <img
-            src={profileImage}
-            alt={name}
-            className="w-24 h-24 rounded-full border-4 border-white object-cover"
-          />
-        </div>
-      </div>
-      <div className="mt-16 text-center">
-        <h3 className="text-3xl font-bold text-gray-900">{name}</h3>
-        <p className="text-sm text-gray-600">{email}</p>
-        <div className="flex justify-center mt-4 text-gray-700 space-x-6">
-          <p>
-            <span className="font-semibold">Register Number :</span>{' '}
-            {registerNumber || 'N/A'}
-          </p>
-          <p>
-            <span className="font-semibold">Degree :</span> {degree}
-          </p>
-          <p>
-            <span className="font-semibold">Batch :</span> {batch || 'N/A'}
-          </p>
-          <p>
-            <span className="font-semibold">College :</span> {college}
->>>>>>> anand_fork/anand_branch
-          </p>
+          <p className="text-sm text-gray-500">Last Updated on 22/09/2024 | 04:18 PM</p>
         </div>
         
         {/* Banner & Profile Image */}
-        <div className="relative mt-8">
-          <div className="h-32 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 rounded-lg">
-            {/* Background gradient */}
-          </div>
+        <div className="relative">
+          <div className="h-32 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 rounded-lg"></div>
           <div className="absolute -bottom-16 left-8 w-32 h-32">
             <img
               src={profileImage}
@@ -229,67 +103,69 @@ const Profile: React.FC<User> = ({
           
           {/* Level and Skill Progress */}
           <div className="mt-10 flex justify-center items-center space-x-8">
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm">
-              Beginner
-            </span>
+            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm">Beginner</span>
             <div className="text-center">
               <span className="text-xl font-bold text-gray-800">Level {level}</span>
               <p className="text-xs text-gray-500">of 5</p>
             </div>
           </div>
-          
-          {/* Experience Section */}
-          <div className="mt-10">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Experience</h3>
-            {experienceList.length > 0 ? (
-              <ul>
-                {experienceList.map((exp, index) => (
-                  <li key={index} className="bg-gray-100 p-4 rounded-lg shadow mb-2">
-                    <p className="font-semibold">{exp.company}</p>
-                    <p className="text-sm">{exp.role}</p>
-                    <p className="text-xs text-gray-500">{exp.duration}</p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-gray-500">No experience added yet.</p>
-            )}
 
-            {/* Add Experience Form */}
-            <div className="mt-6">
-              <input
-                type="text"
-                placeholder="Company"
-                value={newExperience.company}
-                onChange={(e) =>
-                  setNewExperience({ ...newExperience, company: e.target.value })
-                }
-                className="border p-2 rounded w-full mb-2"
-              />
-              <input
-                type="text"
-                placeholder="Role"
-                value={newExperience.role}
-                onChange={(e) =>
-                  setNewExperience({ ...newExperience, role: e.target.value })
-                }
-                className="border p-2 rounded w-full mb-2"
-              />
-              <input
-                type="text"
-                placeholder="Duration"
-                value={newExperience.duration}
-                onChange={(e) =>
-                  setNewExperience({ ...newExperience, duration: e.target.value })
-                }
-                className="border p-2 rounded w-full mb-2"
-              />
+          {/* Experience Section */}
+          <div className="mt-12 text-left">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Experience</h3>
+            <ul>
+              {experiences.map((exp) => (
+                <li key={exp.id} className="mb-4">
+                  <div className="bg-gray-50 p-4 rounded-lg shadow">
+                    <p className="text-lg font-semibold">{exp.role}</p>
+                    <p className="text-gray-600">{exp.company}</p>
+                    <p className="text-gray-400 text-sm">{exp.duration}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            
+            {isEditing ? (
+              <div className="mt-6">
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company"
+                  className="mb-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+                  value={newExperience.company}
+                  onChange={handleExperienceChange}
+                />
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Role"
+                  className="mb-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+                  value={newExperience.role}
+                  onChange={handleExperienceChange}
+                />
+                <input
+                  type="text"
+                  name="duration"
+                  placeholder="Duration"
+                  className="mb-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+                  value={newExperience.duration}
+                  onChange={handleExperienceChange}
+                />
+                <button
+                  className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow hover:bg-indigo-700"
+                  onClick={handleAddExperience}
+                >
+                  Add Experience
+                </button>
+              </div>
+            ) : (
               <button
-                onClick={addExperience}
-                className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition">
-                Add Experience
+                className="w-full mt-4 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-600"
+                onClick={() => setIsEditing(true)}
+              >
+                Add New Experience
               </button>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { FiHeart, FiBookmark } from 'react-icons/fi';
 import CreatePost from '@/components/create-post';
-import withPrivateRoute from '@/components/privateRoute';
 import PrivateRoute from '@/components/privateRoute';
+import { useSelector } from 'react-redux'; // Import useSelector
+import { RootState } from '@/lib/Redux/store';
 
 interface FeedItem {
   _id: string;
@@ -12,7 +13,7 @@ interface FeedItem {
   images: string[];
   title: string;
   updatedAt: string;
-  upvotes: string[];
+  upvotes: (string | null)[];
   isUpvoted?: boolean;
   isSaved?: boolean;
 }
@@ -20,6 +21,11 @@ interface FeedItem {
 const DashboardPage = () => {
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  
+  // Get username from Redux
+  const username = useSelector((state: RootState) => state.user.username);
+  console.log("user"+username);
+  
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -39,9 +45,8 @@ const DashboardPage = () => {
 
   const handleUpvote = (postId: string) => {
     setFeed(feed.map(post => {
-      console.log(post._id, post);
       if (post._id === postId) {
-        const updatedUpvotes = post.isUpvoted ? post.upvotes.slice(0, -1) : [...post.upvotes];
+        const updatedUpvotes = post.isUpvoted ? post.upvotes.slice(0, -1) : [...post.upvotes, username]; // Add username to upvotes
         return { ...post, upvotes: updatedUpvotes, isUpvoted: !post.isUpvoted };
       }
       return post;
@@ -63,7 +68,7 @@ const DashboardPage = () => {
 
   return (
     <PrivateRoute>
-      <div className="flex flex-col  bg-gray-100 dark:text-white dark:bg-gray-900">
+      <div className="flex flex-col bg-gray-100 dark:text-white dark:bg-gray-900">
         <div className="h-1/4 p-6">
           <CreatePost onCreate={handleCreatePost} />
         </div>
@@ -78,10 +83,11 @@ const DashboardPage = () => {
                 <div key={post._id} className="p-6 bg-white shadow rounded-lg hover:bg-gray-50 transition-all dark:text-white dark:bg-gray-900 dark:border border-white">
                   <div className="flex items-center mb-3 dark:text-white dark:bg-gray-900">
                     <div className="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0 overflow-hidden">
-                      <img src={`https://ui-avatars.com/api/?name=${post.title}&background=random`} alt="User Avatar" className="w-full h-full object-cover" />
+                      <img src={`https://ui-avatars.com/api/?name=${username}&background=random`} alt="User Avatar" className="w-full h-full object-cover" />
                     </div>
                     <div className="ml-4">
-                      <h2 className="font-semibold text-lg">{post.title}</h2>
+                      <h2 className="font-semibold text-lg">{username}</h2> {/* Display username here */}
+                      <h3 className="font-medium text-md">{post.title}</h3> {/* Display post title here */}
                       <span className="text-sm text-gray-500">{new Date(post.createdAt).toLocaleTimeString()}</span>
                     </div>
                   </div>
@@ -108,9 +114,9 @@ const DashboardPage = () => {
                           <img
                             key={upvoter}
                             src={`https://ui-avatars.com/api/?name=${upvoter}&background=random`}
-                            alt={upvoter}
+                            alt={upvoter ?? 'Unknown'}
                             className="w-8 h-8 rounded-full border-2 border-white"
-                            title={upvoter}
+                            title={upvoter ?? 'Unknown'}
                           />
                         ))}
                         {post.upvotes.length > 3 && (
