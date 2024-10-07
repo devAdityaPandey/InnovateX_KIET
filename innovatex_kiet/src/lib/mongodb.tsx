@@ -4,6 +4,8 @@ const uri = process.env.MONGODB_URI || '';
 let cachedConnection: mongoose.Connection | null = null;
 
 export async function connectToDatabase() {
+ 
+ 
 
   // If cachedConnection exists and its readyState is 1 (which means it's connected), 
   //the function simply returns the cached connection.
