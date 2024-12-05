@@ -1,46 +1,52 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
 interface IPost extends Document {
   author: mongoose.Schema.Types.ObjectId;
+  userId: string;
   content: string;
-  title: string,
+  title: string;
   likes: number;
-  images: HTMLCollectionOf<HTMLImageElement>;
-  upvotes: mongoose.Schema.Types.ObjectId[];  // List of users who upvoted
+  images: string[];
+  upvotes: mongoose.Schema.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
-  department: string;
+  department: string; 
 }
 
 const postSchema: Schema<IPost> = new Schema({
-
   author: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'User',
-    // required: true
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },  
   title: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
-    required: true
+    required: true,
   },
-  upvotes: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],  // User IDs who upvoted
+  upvotes: [
+    {
+      type: mongoose.Schema.Types.ObjectId, // Assuming upvotes are ObjectIds
+      ref: 'User', // Uncomment if you want to reference a User model
+    },
+  ],
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   images: {
-    type: [String],
-  }
+    type: [String], // Changed to an array of strings for image URLs
+  },
 });
 
 const Post = mongoose.models.Post || mongoose.model<IPost>('Post', postSchema);

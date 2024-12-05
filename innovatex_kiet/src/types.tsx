@@ -8,7 +8,9 @@ export type SideNavItem = {
 };
 export type FeedItem = {
   _id: string;
+  userId: string;
   author: string;
+  username: string;
   title: string;
   content: string;
   images: string[];
@@ -38,3 +40,14 @@ export type Post ={
   createdAt: Date;
 }
 
+// types/User.ts
+export interface User {
+  name: string;
+  email: string;
+  registerNumber?: string; // Optional
+  degree: string;
+  batch?: number; // Optional
+  college?: string; // Optional if applicable
+  profileImage: string;
+  level: number; // Assuming this corresponds to contribution points
+}

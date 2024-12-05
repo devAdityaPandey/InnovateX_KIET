@@ -4,7 +4,7 @@ import { FiHeart, FiBookmark } from 'react-icons/fi';
 import CreatePost from '@/components/create-post';
 
 interface FeedItem {
-  _id: string;
+  id: string;
   content: string;
   createdAt: string;
   images: string[];
@@ -24,8 +24,8 @@ const DashboardPage = () => {
       try {
         const res = await fetch('/api/posts');
         if (!res.ok) throw new Error('Failed to fetch feed data');
-        const data: { data: FeedItem[] } = await res.json();
-        setFeed(data.data);
+        const data: { data: FeedItem[] } = await res.json(); // Ensure the response is typed
+        setFeed(data.data); // Assuming your API response has a "data" field
       } catch (error) {
         console.error('Error:', error);
         setError('Failed to load feed. Please try again later.');
@@ -37,9 +37,8 @@ const DashboardPage = () => {
 
   const handleUpvote = (postId: string) => {
     setFeed(feed.map(post => {
-      console.log(post._id, post);
-      if (post._id === postId) {
-        const updatedUpvotes = post.isUpvoted ? post.upvotes.slice(0, -1) : [...post.upvotes];
+      if (post.id === postId) {
+        const updatedUpvotes = post.isUpvoted ? post.upvotes.slice(0, -1) : [...post.upvotes, 'You'];
         return { ...post, upvotes: updatedUpvotes, isUpvoted: !post.isUpvoted };
       }
       return post;
@@ -52,7 +51,7 @@ const DashboardPage = () => {
 
   const handleSave = (postId: string) => {
     setFeed(feed.map(post => {
-      if (post._id === postId) {
+      if (post.id === postId) {
         return { ...post, isSaved: !post.isSaved };
       }
       return post;
@@ -72,7 +71,7 @@ const DashboardPage = () => {
           {feed
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
             .map(post => (
-              <div key={post._id} className="p-6 bg-white shadow rounded-lg hover:bg-gray-50 transition-all dark:text-white dark:bg-gray-900 dark:border border-white">
+              <div key={post.id} className="p-6 bg-white shadow rounded-lg hover:bg-gray-50 transition-all dark:text-white dark:bg-gray-900 dark:border border-white">
                 <div className="flex items-center mb-3 dark:text-white dark:bg-gray-900">
                   <div className="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0 overflow-hidden">
                     <img src={`https://ui-avatars.com/api/?name=${post.title}&background=random`} alt="User Avatar" className="w-full h-full object-cover" />
@@ -93,7 +92,7 @@ const DashboardPage = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <button
-                      onClick={() => handleUpvote(post._id)}
+                      onClick={() => handleUpvote(post.id)}
                       className={`flex items-center ${post.isUpvoted ? 'text-red-500' : 'text-gray-500'} mr-4`}
                       aria-label={post.isUpvoted ? 'Remove upvote' : 'Upvote'}
                     >
@@ -117,7 +116,7 @@ const DashboardPage = () => {
                   </div>
                   <div>
                     <button
-                      onClick={() => handleSave(post._id)}
+                      onClick={() => handleSave(post.id)}
                       className={`flex items-center ${post.isSaved ? 'text-blue-500' : 'text-gray-500'}`}
                       aria-label={post.isSaved ? 'Unsave post' : 'Save post'}
                     >
