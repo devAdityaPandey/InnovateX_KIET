@@ -10,7 +10,7 @@ InnovateX_KIET is a collaborative platform designed to empower KIET students to 
 - **Project Showcases:** Showcase expertise in areas like web development, AI, data science, and more.
 
 ## Purpose
-As an MCA student, I understand the value of such platforms in enhancing project-based learning. InnovateX_KIET encourages collaboration, allowing students to tackle complex problems and expand their technical knowledge. This initiative aligns with KIET’s mission to foster a tech-driven ecosystem where students continuously grow and innovate.
+As an MCA student, we understand the value of such platforms in enhancing project-based learning. InnovateX_KIET encourages collaboration, allowing students to tackle complex problems and expand their technical knowledge. This initiative aligns with KIET’s mission to foster a tech-driven ecosystem where students continuously grow and innovate.
 
 By facilitating peer-to-peer guidance and driving real-world experiences, InnovateX_KIET ensures students are well-prepared to meet industry demands. Overall, this platform aims to cultivate a collaborative spirit and lay a strong foundation for future innovation and professional development.
 
